@@ -844,7 +844,12 @@ static UIApplication *_YYSharedApplication() {
         default: return NO;
     }
 }
-
+/**
+ 方法删除那些size大于指定size的缓存数据。同样是区分type，删除的逻辑也和上面的方法一致。
+ _dbDeleteItemsWithSizeLargerThan方法除了sql语句不同，操作数据库的步骤相同。
+ _dbCheckpoint方法调用sqlite3_wal_checkpoint方法进行checkpoint操作，将数据同步到数据库中。
+ 调用_dbGetFilenameWithKey:方法从数据库中查找key对应的SQL记录的fileName字段。
+ */
 - (BOOL)removeItemsLargerThanSize:(int)size {
     if (size == INT_MAX) return YES;
     if (size <= 0) return [self removeAllItems];
