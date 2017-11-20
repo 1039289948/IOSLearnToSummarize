@@ -1,0 +1,425 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		274CC9D01FC2B1CC00AEF033 /* 认识@property.m in Sources */ = {isa = PBXBuildFile; fileRef = 274CC9CF1FC2B1CC00AEF033 /* 认识@property.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		27EE0DAB1FBD43150082CC9F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EE0DAA1FBD43150082CC9F /* main.m */; };
+		27EE0DAE1FBD43150082CC9F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EE0DAD1FBD43150082CC9F /* AppDelegate.m */; };
+		27EE0DB11FBD43150082CC9F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EE0DB01FBD43150082CC9F /* ViewController.m */; };
+		27EE0DB41FBD43150082CC9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27EE0DB21FBD43150082CC9F /* Main.storyboard */; };
+		27EE0DB61FBD43150082CC9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27EE0DB51FBD43150082CC9F /* Assets.xcassets */; };
+		27EE0DB91FBD43150082CC9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27EE0DB71FBD43150082CC9F /* LaunchScreen.storyboard */; };
+		27EE0DC31FBD43590082CC9F /* iOS缓存的理解.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EE0DC21FBD43590082CC9F /* iOS缓存的理解.m */; };
+		3D21038989DE2EF089D7EAA4 /* libPods-iOS面试题总结.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24A8E4782756414034B430ED /* libPods-iOS面试题总结.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		24A8E4782756414034B430ED /* libPods-iOS面试题总结.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOS面试题总结.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		274CC9CE1FC2B1CC00AEF033 /* 认识@property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "认识@property.h"; sourceTree = "<group>"; };
+		274CC9CF1FC2B1CC00AEF033 /* 认识@property.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "认识@property.m"; sourceTree = "<group>"; };
+		27EE0DA61FBD43150082CC9F /* iOS面试题总结.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS面试题总结.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27EE0DAA1FBD43150082CC9F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		27EE0DAC1FBD43150082CC9F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		27EE0DAD1FBD43150082CC9F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		27EE0DAF1FBD43150082CC9F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		27EE0DB01FBD43150082CC9F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		27EE0DB31FBD43150082CC9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		27EE0DB51FBD43150082CC9F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		27EE0DB81FBD43150082CC9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		27EE0DBA1FBD43150082CC9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		27EE0DC11FBD43590082CC9F /* iOS缓存的理解.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "iOS缓存的理解.h"; sourceTree = "<group>"; };
+		27EE0DC21FBD43590082CC9F /* iOS缓存的理解.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "iOS缓存的理解.m"; sourceTree = "<group>"; };
+		591E2D7D6DB08F174A094089 /* Pods-iOS面试题总结.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS面试题总结.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iOS面试题总结/Pods-iOS面试题总结.debug.xcconfig"; sourceTree = "<group>"; };
+		F14E5917F6C27BDD474BEDBE /* Pods-iOS面试题总结.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS面试题总结.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOS面试题总结/Pods-iOS面试题总结.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		27EE0DA31FBD43150082CC9F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D21038989DE2EF089D7EAA4 /* libPods-iOS面试题总结.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		274CC9CD1FC2B1BF00AEF033 /* 认识@property */ = {
+			isa = PBXGroup;
+			children = (
+				274CC9CE1FC2B1CC00AEF033 /* 认识@property.h */,
+				274CC9CF1FC2B1CC00AEF033 /* 认识@property.m */,
+			);
+			path = "认识@property";
+			sourceTree = "<group>";
+		};
+		27EE0D9D1FBD43150082CC9F = {
+			isa = PBXGroup;
+			children = (
+				27EE0DA81FBD43150082CC9F /* iOS面试题总结 */,
+				27EE0DA71FBD43150082CC9F /* Products */,
+				43E5FC74D83886DF49295456 /* Pods */,
+				F3CDE3A72C0A0E04E5183E7F /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		27EE0DA71FBD43150082CC9F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				27EE0DA61FBD43150082CC9F /* iOS面试题总结.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		27EE0DA81FBD43150082CC9F /* iOS面试题总结 */ = {
+			isa = PBXGroup;
+			children = (
+				274CC9CD1FC2B1BF00AEF033 /* 认识@property */,
+				27EE0DC01FBD433E0082CC9F /* iOS缓存的理解 */,
+				27EE0DAC1FBD43150082CC9F /* AppDelegate.h */,
+				27EE0DAD1FBD43150082CC9F /* AppDelegate.m */,
+				27EE0DAF1FBD43150082CC9F /* ViewController.h */,
+				27EE0DB01FBD43150082CC9F /* ViewController.m */,
+				27EE0DB21FBD43150082CC9F /* Main.storyboard */,
+				27EE0DB51FBD43150082CC9F /* Assets.xcassets */,
+				27EE0DB71FBD43150082CC9F /* LaunchScreen.storyboard */,
+				27EE0DBA1FBD43150082CC9F /* Info.plist */,
+				27EE0DA91FBD43150082CC9F /* Supporting Files */,
+			);
+			path = "iOS面试题总结";
+			sourceTree = "<group>";
+		};
+		27EE0DA91FBD43150082CC9F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				27EE0DAA1FBD43150082CC9F /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		27EE0DC01FBD433E0082CC9F /* iOS缓存的理解 */ = {
+			isa = PBXGroup;
+			children = (
+				27EE0DC11FBD43590082CC9F /* iOS缓存的理解.h */,
+				27EE0DC21FBD43590082CC9F /* iOS缓存的理解.m */,
+			);
+			name = "iOS缓存的理解";
+			sourceTree = "<group>";
+		};
+		43E5FC74D83886DF49295456 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				591E2D7D6DB08F174A094089 /* Pods-iOS面试题总结.debug.xcconfig */,
+				F14E5917F6C27BDD474BEDBE /* Pods-iOS面试题总结.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F3CDE3A72C0A0E04E5183E7F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				24A8E4782756414034B430ED /* libPods-iOS面试题总结.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		27EE0DA51FBD43150082CC9F /* iOS面试题总结 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 27EE0DBD1FBD43150082CC9F /* Build configuration list for PBXNativeTarget "iOS面试题总结" */;
+			buildPhases = (
+				F95A9CD788B3B3A5B699BF4E /* [CP] Check Pods Manifest.lock */,
+				27EE0DA21FBD43150082CC9F /* Sources */,
+				27EE0DA31FBD43150082CC9F /* Frameworks */,
+				27EE0DA41FBD43150082CC9F /* Resources */,
+				8C01B6DE9C9E166D08CCCA35 /* [CP] Embed Pods Frameworks */,
+				ADD4BE2B1F126A077484C0BA /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "iOS面试题总结";
+			productName = "iOS面试题总结";
+			productReference = 27EE0DA61FBD43150082CC9F /* iOS面试题总结.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		27EE0D9E1FBD43150082CC9F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "冀凯旋";
+				TargetAttributes = {
+					27EE0DA51FBD43150082CC9F = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = ERSM86PM35;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 27EE0DA11FBD43150082CC9F /* Build configuration list for PBXProject "iOS面试题总结" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 27EE0D9D1FBD43150082CC9F;
+			productRefGroup = 27EE0DA71FBD43150082CC9F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				27EE0DA51FBD43150082CC9F /* iOS面试题总结 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		27EE0DA41FBD43150082CC9F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27EE0DB91FBD43150082CC9F /* LaunchScreen.storyboard in Resources */,
+				27EE0DB61FBD43150082CC9F /* Assets.xcassets in Resources */,
+				27EE0DB41FBD43150082CC9F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8C01B6DE9C9E166D08CCCA35 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iOS面试题总结/Pods-iOS面试题总结-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ADD4BE2B1F126A077484C0BA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iOS面试题总结/Pods-iOS面试题总结-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F95A9CD788B3B3A5B699BF4E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		27EE0DA21FBD43150082CC9F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27EE0DC31FBD43590082CC9F /* iOS缓存的理解.m in Sources */,
+				27EE0DB11FBD43150082CC9F /* ViewController.m in Sources */,
+				274CC9D01FC2B1CC00AEF033 /* 认识@property.m in Sources */,
+				27EE0DAE1FBD43150082CC9F /* AppDelegate.m in Sources */,
+				27EE0DAB1FBD43150082CC9F /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		27EE0DB21FBD43150082CC9F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				27EE0DB31FBD43150082CC9F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		27EE0DB71FBD43150082CC9F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				27EE0DB81FBD43150082CC9F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		27EE0DBB1FBD43150082CC9F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		27EE0DBC1FBD43150082CC9F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		27EE0DBE1FBD43150082CC9F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 591E2D7D6DB08F174A094089 /* Pods-iOS面试题总结.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = ERSM86PM35;
+				INFOPLIST_FILE = "iOS面试题总结/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Alexji.iOS-----";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		27EE0DBF1FBD43150082CC9F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F14E5917F6C27BDD474BEDBE /* Pods-iOS面试题总结.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = ERSM86PM35;
+				INFOPLIST_FILE = "iOS面试题总结/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Alexji.iOS-----";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		27EE0DA11FBD43150082CC9F /* Build configuration list for PBXProject "iOS面试题总结" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27EE0DBB1FBD43150082CC9F /* Debug */,
+				27EE0DBC1FBD43150082CC9F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		27EE0DBD1FBD43150082CC9F /* Build configuration list for PBXNativeTarget "iOS面试题总结" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27EE0DBE1FBD43150082CC9F /* Debug */,
+				27EE0DBF1FBD43150082CC9F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 27EE0D9E1FBD43150082CC9F /* Project object */;
+}
