@@ -40,10 +40,21 @@
     
     /**
      
-     YYMemoryCache 是内存缓存，优化了同步访问的性能，用 OSSpinLock 来保证线程安全。另外，缓存内部用双向链表和 NSDictionary 实现了 LRU 淘汰算法，相对于上面几个算是一点进步吧。
-     YYDiskCache   是采用的 SQLite 配合文件的存储方式，但得益于 SQLite 存储的元数据，YYDiskCache 实现了 LRU 淘汰算法、更快的数据统计，更多的容量控制选项。 其中的锁采用了OSSpinLock自旋锁！
+     YYMemoryCache 是内存缓存，优化了同步访问的性能，用 互斥锁 来保证线程安全。另外，缓存内部用双向链表和 NSDictionary 实现了 LRU 淘汰算法，相对于上面几个算是一点进步吧。{
+        pthread_mutex_t 互斥锁
+     }
+     YYDiskCache   是采用的 SQLite 配合文件的存储方式，但得益于 SQLite 存储的元数据，YYDiskCache 实现了 LRU 淘汰算法、更快的数据统计，更多的容量控制选项。！{
+     
+        #define Lock() dispatch_semaphore_wait(self->_lock, DISPATCH_TIME_FOREVER)
+        #define Unlock() dispatch_semaphore_signal(self->_lock)
+     
+     }
+     
+     YYMemoryCache使用了互斥锁来实现多线程访问数据的同步性，YYDiskCache使用了信号量来实现，
      
      
+     
+
      
      YYCache 是对内存缓存以及磁盘缓存的所有封装，方便开发使用
      YYDiskCache 是对磁盘缓存（文件缓存）做的一次封装

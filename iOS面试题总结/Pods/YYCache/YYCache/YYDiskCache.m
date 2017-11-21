@@ -78,11 +78,11 @@ static void _YYDiskCacheSetGlobal(YYDiskCache *cache) {
 
 
 @implementation YYDiskCache {
-    YYKVStorage *_kv;
-    dispatch_semaphore_t _lock;
+    YYKVStorage *_kv; //用于缓存数据
+    dispatch_semaphore_t _lock; //信号量变量，用于多线程访问数据时的同步操作
     dispatch_queue_t _queue;
 }
-
+//边界控制
 - (void)_trimRecursively {
     __weak typeof(self) _self = self;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(_autoTrimInterval * NSEC_PER_SEC)), dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
@@ -170,7 +170,11 @@ static void _YYDiskCacheSetGlobal(YYDiskCache *cache) {
 - (instancetype)initWithPath:(NSString *)path {
     return [self initWithPath:path inlineThreshold:1024 * 20]; // 20KB
 }
-
+// 初始化方法
+/**
+ 根据threshold参数决定缓存的type，默认threshold是20KB，会选择YYKVStorageTypeMixed方式，即根据缓存数据的size进一步决定。然后初始化YYKVStorage对象，信号量、各种limit参数。
+ 在初始化的时候调用_trimRecursively方法每个一定时间检测一下缓存数据大小是否超过容量。
+ */
 - (instancetype)initWithPath:(NSString *)path
              inlineThreshold:(NSUInteger)threshold {
     self = [super init];
@@ -202,7 +206,7 @@ static void _YYDiskCacheSetGlobal(YYDiskCache *cache) {
     _freeDiskSpaceLimit = 0;
     _autoTrimInterval = 60;
     
-    [self _trimRecursively];
+    [self _trimRecursively]; //边界控制
     _YYDiskCacheSetGlobal(self);
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_appWillBeTerminated) name:UIApplicationWillTerminateNotification object:nil];
@@ -226,7 +230,10 @@ static void _YYDiskCacheSetGlobal(YYDiskCache *cache) {
         block(key, contains);
     });
 }
-
+//读缓存
+/**
+ objectForKey:方法调用YYKVStorage对象的getItemForKey:方法读取数据，返回YYKVStorageItem对象，取出value属性，进行反序列化。
+ */
 - (id<NSCoding>)objectForKey:(NSString *)key {
     if (!key) return nil;
     Lock();
@@ -260,7 +267,12 @@ static void _YYDiskCacheSetGlobal(YYDiskCache *cache) {
         block(key, object);
     });
 }
-
+//写缓存
+/**
+ 存储数据，首先判断type，
+ 如果是YYKVStorageTypeSQLite，则直接将数据存入数据库中，filename传nil，
+ 如果是YYKVStorageTypeFile或者YYKVStorageTypeMixed，则判断要存储的数据的大小，如果超过threshold（默认20KB），则需要将数据写入文件，并通过key生成filename。YYCache的作者认为当数据代销超过20KB时，写入文件速度更快。
+ */
 - (void)setObject:(id<NSCoding>)object forKey:(NSString *)key {
     if (!key) return;
     if (!object) {
@@ -268,7 +280,7 @@ static void _YYDiskCacheSetGlobal(YYDiskCache *cache) {
         return;
     }
     
-    NSData *extendedData = [YYDiskCache getExtendedDataFromObject:object];
+    NSData *extendedData = [YYDiskCache getExtendedDataFromObject:object]; //序列化
     NSData *value = nil;
     if (_customArchiveBlock) {
         value = _customArchiveBlock(object);
@@ -284,7 +296,7 @@ static void _YYDiskCacheSetGlobal(YYDiskCache *cache) {
     NSString *filename = nil;
     if (_kv.type != YYKVStorageTypeSQLite) {
         if (value.length > _inlineThreshold) {
-            filename = [self _filenameForKey:key];
+            filename = [self _filenameForKey:key]; //value大于阈值，用文件方式存储value
         }
     }
     
@@ -301,7 +313,10 @@ static void _YYDiskCacheSetGlobal(YYDiskCache *cache) {
         if (block) block();
     });
 }
-
+//删除缓存
+/**
+ removeObjectForKey:方法调用YYKVStorage对象的removeItemForKey:方法删除缓存数据
+ */
 - (void)removeObjectForKey:(NSString *)key {
     if (!key) return;
     Lock();

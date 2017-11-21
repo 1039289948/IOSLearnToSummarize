@@ -27,6 +27,10 @@ NS_ASSUME_NONNULL_BEGIN
  
  You may compile the latest version of sqlite and ignore the libsqlite3.dylib in
  iOS system to get 2x~4x speed up.
+ 
+ YYDiskCache是上层调用YYKVStorage的类，对外提供了存、删、查、边界控制的方法。内部维护了三个变量，如下：
+ 
+ 
  */
 @interface YYDiskCache : NSObject
 

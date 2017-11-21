@@ -370,16 +370,17 @@ static UIApplication *_YYSharedApplication() {
 
 - (YYKVStorageItem *)_dbGetItemFromStmt:(sqlite3_stmt *)stmt excludeInlineData:(BOOL)excludeInlineData {
     int i = 0;
-    char *key = (char *)sqlite3_column_text(stmt, i++);
-    char *filename = (char *)sqlite3_column_text(stmt, i++);
-    int size = sqlite3_column_int(stmt, i++);
-    const void *inline_data = excludeInlineData ? NULL : sqlite3_column_blob(stmt, i);
+    char *key = (char *)sqlite3_column_text(stmt, i++); //key
+    char *filename = (char *)sqlite3_column_text(stmt, i++); //filename
+    int size = sqlite3_column_int(stmt, i++); //数据大小
+    const void *inline_data = excludeInlineData ? NULL : sqlite3_column_blob(stmt, i); //二进制数据
     int inline_data_bytes = excludeInlineData ? 0 : sqlite3_column_bytes(stmt, i++);
-    int modification_time = sqlite3_column_int(stmt, i++);
-    int last_access_time = sqlite3_column_int(stmt, i++);
-    const void *extended_data = sqlite3_column_blob(stmt, i);
+    int modification_time = sqlite3_column_int(stmt, i++); //修改时间
+    int last_access_time = sqlite3_column_int(stmt, i++); //访问时间
+    const void *extended_data = sqlite3_column_blob(stmt, i);//附加数据
     int extended_data_bytes = sqlite3_column_bytes(stmt, i++);
     
+     //用YYKVStorageItem对象封装
     YYKVStorageItem *item = [YYKVStorageItem new];
     if (key) item.key = [NSString stringWithUTF8String:key];
     if (filename && *filename != 0) item.filename = [NSString stringWithUTF8String:filename];
@@ -391,16 +392,23 @@ static UIApplication *_YYSharedApplication() {
     return item;
 }
 
+/**
+ sql语句是查询符合key值的记录中的各个字段，例如缓存的key、大小、二进制数据、访问时间等信息，
+    excludeInlineData表示查询数据时，是否要排除inline_data字段，即是否查询二进制数据，执行sql语句后，
+    通过stmt指针和_dbGetItemFromStmt:excludeInlineData:方法取出各个字段，
+    并创建YYKVStorageItem对象，将记录的各个字段赋值给各个属性
+ */
 - (YYKVStorageItem *)_dbGetItemWithKey:(NSString *)key excludeInlineData:(BOOL)excludeInlineData {
+    //查询sql语句，是否排除inline_data
     NSString *sql = excludeInlineData ? @"select key, filename, size, modification_time, last_access_time, extended_data from manifest where key = ?1;" : @"select key, filename, size, inline_data, modification_time, last_access_time, extended_data from manifest where key = ?1;";
-    sqlite3_stmt *stmt = [self _dbPrepareStmt:sql];
+    sqlite3_stmt *stmt = [self _dbPrepareStmt:sql]; //准备工作，构建stmt
     if (!stmt) return nil;
-    sqlite3_bind_text(stmt, 1, key.UTF8String, -1, NULL);
+    sqlite3_bind_text(stmt, 1, key.UTF8String, -1, NULL); //绑定参数
     
     YYKVStorageItem *item = nil;
-    int result = sqlite3_step(stmt);
+    int result = sqlite3_step(stmt); //执行sql语句
     if (result == SQLITE_ROW) {
-        item = [self _dbGetItemFromStmt:stmt excludeInlineData:excludeInlineData];
+        item = [self _dbGetItemFromStmt:stmt excludeInlineData:excludeInlineData]; //取出查询记录中的各个字段，用YYKVStorageItem封装并返回
     } else {
         if (result != SQLITE_DONE) {
             if (_errorLogsEnabled) NSLog(@"%s line:%d sqlite query error (%d): %s", __FUNCTION__, __LINE__, result, sqlite3_errmsg(_db));
@@ -1002,12 +1010,20 @@ static UIApplication *_YYSharedApplication() {
     }
 }
 
+//读取缓存数据
+/**
+ 该方法通过key访问数据，返回YYKVStorageItem封装的缓存数据。首先调用_dbGetItemWithKey:excludeInlineData:从数据库中查询
+ 
+ 最后取出YYKVStorageItem对象后，判断filename属性是否存在，
+ 如果存在说明缓存的二进制数据写进了文件中，此时返回的YYKVStorageItem对象的value属性是nil，
+ 需要调用_fileReadWithName:方法从文件中读取数据，并赋值给YYKVStorageItem的value属性。
+ */
 - (YYKVStorageItem *)getItemForKey:(NSString *)key {
     if (key.length == 0) return nil;
-    YYKVStorageItem *item = [self _dbGetItemWithKey:key excludeInlineData:NO];
+    YYKVStorageItem *item = [self _dbGetItemWithKey:key excludeInlineData:NO]; //从数据库中查询记录，返回YYKVStorageItem对象，封装了缓存数据的信息
     if (item) {
-        [self _dbUpdateAccessTimeWithKey:key];
-        if (item.filename) {
+        [self _dbUpdateAccessTimeWithKey:key]; //更新访问时间
+        if (item.filename) { //filename存在，按照item.value从文件中读取
             item.value = [self _fileReadWithName:item.filename];
             if (!item.value) {
                 [self _dbDeleteItemWithKey:key];
@@ -1024,42 +1040,52 @@ static UIApplication *_YYSharedApplication() {
     return item;
 }
 
+//读取缓存数据
+/**
+ 该方法通过key访问缓存数据value，区分type，
+ 如果是YYKVStorageTypeSQLite，调用_dbGetValueWithKey:方法从数据库中查询key对应的记录中的inline_data。
+ 如果是YYKVStorageTypeFile，首先调用_dbGetFilenameWithKey:方法从数据库中查询key对应的记录中的filename，根据filename从文件中删除对应缓存数据。
+ 如果是YYKVStorageTypeMixed，同样先获取filename，根据filename是否存在选择用相应的方式访问
+ */
 - (NSData *)getItemValueForKey:(NSString *)key {
     if (key.length == 0) return nil;
     NSData *value = nil;
     switch (_type) {
         case YYKVStorageTypeFile: {
-            NSString *filename = [self _dbGetFilenameWithKey:key];
+            NSString *filename = [self _dbGetFilenameWithKey:key]; //从数据库中查找filename
             if (filename) {
-                value = [self _fileReadWithName:filename];
+                value = [self _fileReadWithName:filename]; //根据filename读取数据
                 if (!value) {
-                    [self _dbDeleteItemWithKey:key];
+                    [self _dbDeleteItemWithKey:key]; //如果没有读取到缓存数据，从数据库中删除记录，保持数据同步
                     value = nil;
                 }
             }
         } break;
         case YYKVStorageTypeSQLite: {
-            value = [self _dbGetValueWithKey:key];
+            value = [self _dbGetValueWithKey:key]; //直接从数据中取inline_data
         } break;
         case YYKVStorageTypeMixed: {
-            NSString *filename = [self _dbGetFilenameWithKey:key];
+            NSString *filename = [self _dbGetFilenameWithKey:key]; //从数据库中查找filename
             if (filename) {
-                value = [self _fileReadWithName:filename];
+                value = [self _fileReadWithName:filename]; //根据filename读取数据
                 if (!value) {
-                    [self _dbDeleteItemWithKey:key];
+                    [self _dbDeleteItemWithKey:key]; //保持数据同步
                     value = nil;
                 }
             } else {
-                value = [self _dbGetValueWithKey:key];
+                value = [self _dbGetValueWithKey:key]; //直接从数据中取inline_data
             }
         } break;
     }
     if (value) {
-        [self _dbUpdateAccessTimeWithKey:key];
+        [self _dbUpdateAccessTimeWithKey:key]; //更新访问时间 调用方法用于更新该数据的访问时间，即sql记录中的last_access_time字段。
     }
     return value;
 }
-
+/**
+ 返回一组YYKVStorageItem对象信息，调用_dbGetItemWithKeys:excludeInlineData:方法获取一组YYKVStorageItem对象。
+ 访问逻辑和getItemForKey:方法类似，sql语句的查询条件改为多个key匹配。
+ */
 - (NSArray *)getItemForKeys:(NSArray *)keys {
     if (keys.count == 0) return nil;
     NSMutableArray *items = [self _dbGetItemWithKeys:keys excludeInlineData:NO];
@@ -1088,6 +1114,9 @@ static UIApplication *_YYSharedApplication() {
     return [self _dbGetItemWithKeys:keys excludeInlineData:YES];
 }
 
+/**
+ 返回一组缓存数据，调用getItemForKeys:方法获取一组YYKVStorageItem对象后，取出其中的value，存入一个临时字典对象后返回。
+ */
 - (NSDictionary *)getItemValueForKeys:(NSArray *)keys {
     NSMutableArray *items = (NSMutableArray *)[self getItemForKeys:keys];
     NSMutableDictionary *kv = [NSMutableDictionary new];
