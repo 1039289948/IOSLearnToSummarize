@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		274CC9D01FC2B1CC00AEF033 /* 认识@property.m in Sources */ = {isa = PBXBuildFile; fileRef = 274CC9CF1FC2B1CC00AEF033 /* 认识@property.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		279D06461FC41F6100C1BE0C /* iOSYYmodel的理解.m in Sources */ = {isa = PBXBuildFile; fileRef = 279D06451FC41F6100C1BE0C /* iOSYYmodel的理解.m */; };
 		27EE0DAB1FBD43150082CC9F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EE0DAA1FBD43150082CC9F /* main.m */; };
 		27EE0DAE1FBD43150082CC9F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EE0DAD1FBD43150082CC9F /* AppDelegate.m */; };
 		27EE0DB11FBD43150082CC9F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EE0DB01FBD43150082CC9F /* ViewController.m */; };
@@ -22,6 +23,8 @@
 		24A8E4782756414034B430ED /* libPods-iOS面试题总结.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOS面试题总结.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		274CC9CE1FC2B1CC00AEF033 /* 认识@property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "认识@property.h"; sourceTree = "<group>"; };
 		274CC9CF1FC2B1CC00AEF033 /* 认识@property.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "认识@property.m"; sourceTree = "<group>"; };
+		279D06441FC41F6100C1BE0C /* iOSYYmodel的理解.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "iOSYYmodel的理解.h"; sourceTree = "<group>"; };
+		279D06451FC41F6100C1BE0C /* iOSYYmodel的理解.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "iOSYYmodel的理解.m"; sourceTree = "<group>"; };
 		27EE0DA61FBD43150082CC9F /* iOS面试题总结.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS面试题总结.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27EE0DAA1FBD43150082CC9F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		27EE0DAC1FBD43150082CC9F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -59,6 +62,15 @@
 			path = "认识@property";
 			sourceTree = "<group>";
 		};
+		279D06431FC41F4100C1BE0C /* iOSYYmodel的理解 */ = {
+			isa = PBXGroup;
+			children = (
+				279D06441FC41F6100C1BE0C /* iOSYYmodel的理解.h */,
+				279D06451FC41F6100C1BE0C /* iOSYYmodel的理解.m */,
+			);
+			path = "iOSYYmodel的理解";
+			sourceTree = "<group>";
+		};
 		27EE0D9D1FBD43150082CC9F = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +92,7 @@
 		27EE0DA81FBD43150082CC9F /* iOS面试题总结 */ = {
 			isa = PBXGroup;
 			children = (
+				279D06431FC41F4100C1BE0C /* iOSYYmodel的理解 */,
 				274CC9CD1FC2B1BF00AEF033 /* 认识@property */,
 				27EE0DC01FBD433E0082CC9F /* iOS缓存的理解 */,
 				27EE0DAC1FBD43150082CC9F /* AppDelegate.h */,
@@ -255,6 +268,7 @@
 				27EE0DC31FBD43590082CC9F /* iOS缓存的理解.m in Sources */,
 				27EE0DB11FBD43150082CC9F /* ViewController.m in Sources */,
 				274CC9D01FC2B1CC00AEF033 /* 认识@property.m in Sources */,
+				279D06461FC41F6100C1BE0C /* iOSYYmodel的理解.m in Sources */,
 				27EE0DAE1FBD43150082CC9F /* AppDelegate.m in Sources */,
 				27EE0DAB1FBD43150082CC9F /* main.m in Sources */,
 			);

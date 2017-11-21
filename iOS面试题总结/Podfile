@@ -4,5 +4,5 @@
 target 'iOS面试题总结' do
   
 	pod 'YYCache'
-
+        pod 'YYModel'
 end
