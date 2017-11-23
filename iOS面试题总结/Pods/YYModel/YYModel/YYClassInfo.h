@@ -78,13 +78,29 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding);
 
 /**
  Instance variable information.
+ 对 Runtime 层 objc_ivar 结构体的封装，objc_ivar 是 Runtime 中表示变量的结构体
  */
 @interface YYClassIvarInfo : NSObject
-@property (nonatomic, assign, readonly) Ivar ivar;              ///< ivar opaque struct
-@property (nonatomic, strong, readonly) NSString *name;         ///< Ivar's name
-@property (nonatomic, assign, readonly) ptrdiff_t offset;       ///< Ivar's offset
-@property (nonatomic, strong, readonly) NSString *typeEncoding; ///< Ivar's type encoding
-@property (nonatomic, assign, readonly) YYEncodingType type;    ///< Ivar's type
+@property (nonatomic, assign, readonly) Ivar ivar;              ///< ivar opaque struct     变量，对应 objc_ivar
+@property (nonatomic, strong, readonly) NSString *name;         ///< Ivar's name            变量名称，对应 ivar_name
+@property (nonatomic, assign, readonly) ptrdiff_t offset;       ///< Ivar's offset          变量偏移量，对应 ivar_offset
+@property (nonatomic, strong, readonly) NSString *typeEncoding; ///< Ivar's type encoding   变量类型编码，通过 ivar_getTypeEncoding 函数得到
+@property (nonatomic, assign, readonly) YYEncodingType type;    ///< Ivar's type            变量类型，通过 YYEncodingGetType 方法从类型编码中得到
+
+/**
+ struct objc_ivar {
+    char * _Nullable ivar_name OBJC2_UNAVAILABLE; // 变量名称
+    char * _Nullable ivar_type OBJC2_UNAVAILABLE; // 变量类型
+    int ivar_offset OBJC2_UNAVAILABLE; // 变量偏移量
+ #ifdef __LP64__ // 如果已定义 __LP64__ 则表示正在构建 64 位目标
+    int space OBJC2_UNAVAILABLE; // 变量空间
+ #endif
+ }
+ 
+ 日常开发中 NSString 类型的属性我们都会用 copy 来修饰，而 YYClassIvarInfo 中的 name 和 typeEncoding 属性都用 strong 修饰。
+ 因为其内部是先通过 Runtime 方法拿到 const char * 之后通过 stringWithUTF8String 方法转为 NSString 的。
+ 所以即便是 NSString 这类属性在确定其不会在初始化之后被修改的情况下，使用 strong 做一次单纯的强引用在性能上讲比 copy 要高一些。
+ */
 
 /**
  Creates and returns an ivar info object.
@@ -98,15 +114,28 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding);
 
 /**
  Method information.
+ 
+ 对 Runtime 中 objc_method 的封装，objc_method 在 Runtime 是用来定义方法的结构体。
+ 
  */
 @interface YYClassMethodInfo : NSObject
-@property (nonatomic, assign, readonly) Method method;                  ///< method opaque struct
-@property (nonatomic, strong, readonly) NSString *name;                 ///< method name
-@property (nonatomic, assign, readonly) SEL sel;                        ///< method's selector
-@property (nonatomic, assign, readonly) IMP imp;                        ///< method's implementation
-@property (nonatomic, strong, readonly) NSString *typeEncoding;         ///< method's parameter and return types
-@property (nonatomic, strong, readonly) NSString *returnTypeEncoding;   ///< return value's type
-@property (nullable, nonatomic, strong, readonly) NSArray<NSString *> *argumentTypeEncodings; ///< array of arguments' type
+@property (nonatomic, assign, readonly) Method method;                  ///< method opaque struct                           方法
+@property (nonatomic, strong, readonly) NSString *name;                 ///< method name                                    方法名称
+@property (nonatomic, assign, readonly) SEL sel;                        ///< method's selector                              方法选择器
+@property (nonatomic, assign, readonly) IMP imp;                        ///< method's implementation                        方法实现，指向实现方法函数的函数指针
+@property (nonatomic, strong, readonly) NSString *typeEncoding;         ///< method's parameter and return types            方法参数和返回类型编码
+@property (nonatomic, strong, readonly) NSString *returnTypeEncoding;   ///< return value's type                            返回值类型编码
+@property (nullable, nonatomic, strong, readonly) NSArray<NSString *> *argumentTypeEncodings; ///< array of arguments' type 参数类型编码数组
+
+/**
+ 
+ struct objc_method {
+    SEL _Nonnull method_name OBJC2_UNAVAILABLE; // 方法名称
+    char * _Nullable method_types OBJC2_UNAVAILABLE; // 方法类型
+    MP _Nonnull method_imp OBJC2_UNAVAILABLE; // 方法实现（函数指针）
+ }
+ 
+ */
 
 /**
  Creates and returns a method info object.
@@ -120,17 +149,18 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding);
 
 /**
  Property information.
+ 对 property_t 的封装，property_t 在 Runtime 中是用来表示属性的结构体。
  */
 @interface YYClassPropertyInfo : NSObject
-@property (nonatomic, assign, readonly) objc_property_t property; ///< property's opaque struct
-@property (nonatomic, strong, readonly) NSString *name;           ///< property's name
-@property (nonatomic, assign, readonly) YYEncodingType type;      ///< property's type
-@property (nonatomic, strong, readonly) NSString *typeEncoding;   ///< property's encoding value
-@property (nonatomic, strong, readonly) NSString *ivarName;       ///< property's ivar name
-@property (nullable, nonatomic, assign, readonly) Class cls;      ///< may be nil
-@property (nullable, nonatomic, strong, readonly) NSArray<NSString *> *protocols; ///< may nil
-@property (nonatomic, assign, readonly) SEL getter;               ///< getter (nonnull)
-@property (nonatomic, assign, readonly) SEL setter;               ///< setter (nonnull)
+@property (nonatomic, assign, readonly) objc_property_t property; ///< property's opaque struct     属性
+@property (nonatomic, strong, readonly) NSString *name;           ///< property's name              属性名称
+@property (nonatomic, assign, readonly) YYEncodingType type;      ///< property's type              属性类型
+@property (nonatomic, strong, readonly) NSString *typeEncoding;   ///< property's encoding value    属性类型编码
+@property (nonatomic, strong, readonly) NSString *ivarName;       ///< property's ivar name         变量名称
+@property (nullable, nonatomic, assign, readonly) Class cls;      ///< may be nil                   类型
+@property (nullable, nonatomic, strong, readonly) NSArray<NSString *> *protocols; ///< may nil      属性相关协议
+@property (nonatomic, assign, readonly) SEL getter;               ///< getter (nonnull)             getter 方法选择器
+@property (nonatomic, assign, readonly) SEL setter;               ///< setter (nonnull)             setter 方法选择器
 
 /**
  Creates and returns a property info object.
@@ -144,17 +174,44 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding);
 
 /**
  Class information for a class.
+ 
+ 封装了 objc_class，objc_class 在 Runtime 中表示一个 Objective-C 类。
  */
 @interface YYClassInfo : NSObject
-@property (nonatomic, assign, readonly) Class cls; ///< class object
-@property (nullable, nonatomic, assign, readonly) Class superCls; ///< super class object
-@property (nullable, nonatomic, assign, readonly) Class metaCls;  ///< class's meta class object
-@property (nonatomic, readonly) BOOL isMeta; ///< whether this class is meta class
-@property (nonatomic, strong, readonly) NSString *name; ///< class name
-@property (nullable, nonatomic, strong, readonly) YYClassInfo *superClassInfo; ///< super class's class info
-@property (nullable, nonatomic, strong, readonly) NSDictionary<NSString *, YYClassIvarInfo *> *ivarInfos; ///< ivars
-@property (nullable, nonatomic, strong, readonly) NSDictionary<NSString *, YYClassMethodInfo *> *methodInfos; ///< methods
-@property (nullable, nonatomic, strong, readonly) NSDictionary<NSString *, YYClassPropertyInfo *> *propertyInfos; ///< properties
+@property (nonatomic, assign, readonly) Class cls;                                                      ///< class object                       类
+@property (nullable, nonatomic, assign, readonly) Class superCls;                                       ///< super class object                 超类
+@property (nullable, nonatomic, assign, readonly) Class metaCls;                                        ///< class's meta class object          元类
+@property (nonatomic, readonly) BOOL isMeta;                                                            ///< whether this class is meta class   元类标识，自身是否为元类
+@property (nonatomic, strong, readonly) NSString *name;                                                 ///< class name                         类名称
+@property (nullable, nonatomic, strong, readonly) YYClassInfo *superClassInfo;                          ///< super class's class info           父类（超类）信息
+@property (nullable, nonatomic, strong, readonly) NSDictionary<NSString *, YYClassIvarInfo *> *ivarInfos;           ///< ivars                  变量信息
+@property (nullable, nonatomic, strong, readonly) NSDictionary<NSString *, YYClassMethodInfo *> *methodInfos;       ///< methods                方法信息
+@property (nullable, nonatomic, strong, readonly) NSDictionary<NSString *, YYClassPropertyInfo *> *propertyInfos;   ///< properties             属性信息
+
+
+/**
+ 
+ typedef struct objc_class *Class;
+ 
+ // runtime.h
+ struct objc_class {
+    Class _Nonnull isa OBJC_ISA_AVAILABILITY; // isa 指针
+ 
+ #if !__OBJC2__
+    Class _Nullable super_class OBJC2_UNAVAILABLE; // 父类（超类）指针
+    const char * _Nonnull name OBJC2_UNAVAILABLE; // 类名
+    long version OBJC2_UNAVAILABLE; // 版本
+    long info OBJC2_UNAVAILABLE; // 信息
+    long instance_size OBJC2_UNAVAILABLE; // 初始尺寸
+    struct objc_ivar_list * _Nullable ivars OBJC2_UNAVAILABLE; // 变量列表
+    struct objc_method_list * _Nullable * _Nullable methodLists OBJC2_UNAVAILABLE; // 方法列表
+    struct objc_cache * _Nonnull cache OBJC2_UNAVAILABLE; // 缓存
+    struct objc_protocol_list * _Nullable protocols OBJC2_UNAVAILABLE; // 协议列表
+ #endif
+ 
+ } OBJC2_UNAVAILABLE;
+ 
+ */
 
 /**
  If the class is changed (for example: you add a method to this class with

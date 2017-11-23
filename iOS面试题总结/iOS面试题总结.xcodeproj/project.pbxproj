@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		274CC9D01FC2B1CC00AEF033 /* 认识@property.m in Sources */ = {isa = PBXBuildFile; fileRef = 274CC9CF1FC2B1CC00AEF033 /* 认识@property.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		279D06461FC41F6100C1BE0C /* iOSYYmodel的理解.m in Sources */ = {isa = PBXBuildFile; fileRef = 279D06451FC41F6100C1BE0C /* iOSYYmodel的理解.m */; };
+		27CA736F1FC67EC600A7101D /* LiveLife.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CA736E1FC67EC600A7101D /* LiveLife.swift */; };
 		27EE0DAB1FBD43150082CC9F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EE0DAA1FBD43150082CC9F /* main.m */; };
 		27EE0DAE1FBD43150082CC9F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EE0DAD1FBD43150082CC9F /* AppDelegate.m */; };
 		27EE0DB11FBD43150082CC9F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EE0DB01FBD43150082CC9F /* ViewController.m */; };
@@ -25,6 +26,8 @@
 		274CC9CF1FC2B1CC00AEF033 /* 认识@property.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "认识@property.m"; sourceTree = "<group>"; };
 		279D06441FC41F6100C1BE0C /* iOSYYmodel的理解.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "iOSYYmodel的理解.h"; sourceTree = "<group>"; };
 		279D06451FC41F6100C1BE0C /* iOSYYmodel的理解.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "iOSYYmodel的理解.m"; sourceTree = "<group>"; };
+		27CA736D1FC67EC600A7101D /* iOS面试题总结-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOS面试题总结-Bridging-Header.h"; sourceTree = "<group>"; };
+		27CA736E1FC67EC600A7101D /* LiveLife.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveLife.swift; sourceTree = "<group>"; };
 		27EE0DA61FBD43150082CC9F /* iOS面试题总结.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS面试题总结.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27EE0DAA1FBD43150082CC9F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		27EE0DAC1FBD43150082CC9F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -104,6 +107,8 @@
 				27EE0DB71FBD43150082CC9F /* LaunchScreen.storyboard */,
 				27EE0DBA1FBD43150082CC9F /* Info.plist */,
 				27EE0DA91FBD43150082CC9F /* Supporting Files */,
+				27CA736E1FC67EC600A7101D /* LiveLife.swift */,
+				27CA736D1FC67EC600A7101D /* iOS面试题总结-Bridging-Header.h */,
 			);
 			path = "iOS面试题总结";
 			sourceTree = "<group>";
@@ -177,6 +182,7 @@
 					27EE0DA51FBD43150082CC9F = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = ERSM86PM35;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -267,6 +273,7 @@
 			files = (
 				27EE0DC31FBD43590082CC9F /* iOS缓存的理解.m in Sources */,
 				27EE0DB11FBD43150082CC9F /* ViewController.m in Sources */,
+				27CA736F1FC67EC600A7101D /* LiveLife.swift in Sources */,
 				274CC9D01FC2B1CC00AEF033 /* 认识@property.m in Sources */,
 				279D06461FC41F6100C1BE0C /* iOSYYmodel的理解.m in Sources */,
 				27EE0DAE1FBD43150082CC9F /* AppDelegate.m in Sources */,
@@ -391,11 +398,15 @@
 			baseConfigurationReference = 591E2D7D6DB08F174A094089 /* Pods-iOS面试题总结.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = ERSM86PM35;
 				INFOPLIST_FILE = "iOS面试题总结/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Alexji.iOS-----";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "iOS面试题总结/iOS面试题总结-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -404,11 +415,14 @@
 			baseConfigurationReference = F14E5917F6C27BDD474BEDBE /* Pods-iOS面试题总结.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = ERSM86PM35;
 				INFOPLIST_FILE = "iOS面试题总结/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Alexji.iOS-----";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "iOS面试题总结/iOS面试题总结-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

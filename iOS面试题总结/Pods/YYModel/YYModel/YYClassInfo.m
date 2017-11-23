@@ -93,6 +93,7 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding) {
 @implementation YYClassIvarInfo
 
 - (instancetype)initWithIvar:(Ivar)ivar {
+    // 判空入参
     if (!ivar) return nil;
     self = [super init];
     _ivar = ivar;
@@ -269,7 +270,10 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding) {
     _superClassInfo = [self.class classInfoWithClass:_superCls];
     return self;
 }
-
+//更新
+/**
+ 是 YYClassInfo 的私有方法，它的实现逻辑简单介绍就是清空当前 YYClassInfo 实例变量，方法以及属性，之后再重新初始化它们
+ */
 - (void)_update {
     _ivarInfos = nil;
     _methodInfos = nil;
@@ -325,9 +329,20 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding) {
 - (BOOL)needUpdate {
     return _needUpdate;
 }
+//YYClassInfo 的初始化细节
+
+/**
+ 创建单例缓存，类缓存和元类缓存
+ 使用 dispatch_semaphore 作为锁保证缓存线程安全
+ 初始化前先去缓存中查找是否已经向缓存中注册过当前要初始化的 YYClassInfo
+ 如果查找到缓存对象，则判断缓存对象是否需要更新并执行相关操作
+ 如果缓存中未找到缓存对象则初始化
+ 初始化成功后向缓存中注册该 YYClassInfo 实例
+ */
 
 + (instancetype)classInfoWithClass:(Class)cls {
-    if (!cls) return nil;
+    if (!cls) return nil; // 判空入参
+    // 单例缓存 classCache 与 metaCache，对应缓存类和元类
     static CFMutableDictionaryRef classCache;
     static CFMutableDictionaryRef metaCache;
     static dispatch_once_t onceToken;
@@ -335,18 +350,26 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding) {
     dispatch_once(&onceToken, ^{
         classCache = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
         metaCache = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+        // 这里把 dispatch_semaphore 当做锁来使用（当信号量只有 1 时）
         lock = dispatch_semaphore_create(1);
     });
+    // 初始化之前，首先会根据当前 YYClassInfo 是否为元类去对应的单例缓存中查找
+    // 这里使用了上面的 dispatch_semaphore 加锁，保证单例缓存的线程安全
     dispatch_semaphore_wait(lock, DISPATCH_TIME_FOREVER);
     YYClassInfo *info = CFDictionaryGetValue(class_isMetaClass(cls) ? metaCache : classCache, (__bridge const void *)(cls));
+    // 如果找到了，且找到的信息需要更新的话则执行更新操作
     if (info && info->_needUpdate) {
         [info _update];
     }
     dispatch_semaphore_signal(lock);
+    // 如果没找到，才会去老实初始化
     if (!info) {
+        // 初始化成功
         info = [[YYClassInfo alloc] initWithClass:cls];
         if (info) {
+            // 线程安全
             dispatch_semaphore_wait(lock, DISPATCH_TIME_FOREVER);
+            // 根据初始化信息选择向对应的类/元类缓存注入信息，key = cls，value = info
             CFDictionarySetValue(info.isMeta ? metaCache : classCache, (__bridge const void *)(cls), (__bridge const void *)(info));
             dispatch_semaphore_signal(lock);
         }

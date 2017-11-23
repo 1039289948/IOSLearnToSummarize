@@ -28,7 +28,15 @@
         YYClassInfo && objc_class           封装了 objc_class，objc_class 在 Runtime 中表示一个 Objective-C 类。
 
  
+ NS_ASSUME_NONNULL_BEGIN / NS_ASSUME_NONNULL_END
+ 为了防止写一大堆 nonnull(不可为nil)，Foundation 还提供了一对儿宏，包在里面的对象默认加 nonnull 修饰符，只需要把 nullable 的指出来就行
  
+ #define force_inline inline attribute((always_inline))
+ 
+ __attribute__((always_inline))的意思是强制内联，所有加了__attribute__((always_inline))的函数再被调用时不会被编译成函数调用而是直接扩展到调用函数体内，比如我定义了函数
+ __attribute__((always_inline)) void a()
+ void b()｛a();｝
+ b调用a函数的汇编代码不会是跳转到a执行，而是a函数的代码直接在b内成为b的一部分。
  
  
  */
