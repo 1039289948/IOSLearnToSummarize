@@ -39,7 +39,85 @@
  b调用a函数的汇编代码不会是跳转到a执行，而是a函数的代码直接在b内成为b的一部分。
  
  
+ YYClassInfo 对 Runtime 层在 JSON 模型转换中需要用到的结构体的封装，那么 NSObject+YYModel 在 YYModel 中担当的责任则是利用 YYClassInfo 层级封装好的类切实的执行 JSON 模型之间的转换逻辑，并且提供了无侵入性的接口。
+ 
+ force_inline 这种代码技巧，我说过我在写完 YYModel 或者攒到足够多的时候会主动拿出来与大家分享这些代码技巧，不过这里大家通过字面也不难理解，就是强制内联。
+ 
+ 
+ NSDictionary to Model 过程中
+ 
+ // 为字典中的每个键值对调用 ModelSetWithDictionaryFunction
+ // 这句话是核心代码，一般情况下就是靠 ModelSetWithDictionaryFunction 通过字典设置模型
+ // 这句话是核心代码， ModelSetValueForProperty 函数是为模型中的属性赋值的实现方法
+ 
+ 
+ yy_modelSetWithDictionary，将字典转模型
+ 
+                                                <-------------------------------------------------------------------------------------------------------------------
+ 字典转model的流程                                |                                                                                                                   |
+                                      根据字典初始化模型的实现方法                           字典键值对建模                                   model进行赋值                  |
+ yy_modelWithDictionary ----->>>>>> yy_modelSetWithDictionary ---------->>>>>>> ModelSetWithDictionaryFunction ---------->>>>>>> ModelSetValueForProperty ---------
+ 
+                                            入参校验                                                                                根据属性元类型划分代码逻辑
+                                    初始化模型元以及映射表校验                                                    如果属性元是 CNumber 类型，即 int、uint 之类，则使用 ModelSetNumberToProperty 赋值
+                                初始化模型设置上下文 ModelSetContext                                      如果属性元属于 NSType 类型，即 NSString、NSNumber 之类，则根据类型转换中可能涉及到的对应类型做逻辑判断并赋值
+                        为字典中的每个键值对调用 ModelSetWithDictionaryFunction             如果属性元不属于 CNumber 和 NSType，则猜测为 id，Class，SEL，Block，struct、union、char[n]，void 或 char 类型并且做出相应的转换和赋值
+                                        检验转换结果                                                                  在赋值转化过程中会多次使用yy_modelSetWithDictionary函数，进行递归赋值
+ 
+ 
+ 
  */
+
+
+/**
+ Model to JSON
+ 
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @end

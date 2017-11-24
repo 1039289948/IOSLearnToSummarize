@@ -176,6 +176,8 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding);
  Class information for a class.
  
  封装了 objc_class，objc_class 在 Runtime 中表示一个 Objective-C 类。
+ 
+ 对 Runtime 层在 JSON 模型转换中需要用到的结构体的封装
  */
 @interface YYClassInfo : NSObject
 @property (nonatomic, assign, readonly) Class cls;                                                      ///< class object                       类

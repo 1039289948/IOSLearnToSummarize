@@ -140,6 +140,7 @@ NS_ASSUME_NONNULL_BEGIN
  If the reciver is `NSArray`, `NSDictionary` or `NSSet`, it just convert
  the inner object to json object.
  */
+ // 递归转换模型到 JSON
 - (nullable id)yy_modelToJSONObject;
 
 /**
