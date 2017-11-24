@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "Core Foundation框架和Cocoa Foundation框架区别.h"
 
 @interface ViewController ()
 
@@ -16,7 +17,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+
+    Core_Foundation___Cocoa_Foundation____ *obj = [[Core_Foundation___Cocoa_Foundation____ alloc]init];
+
 }
 
 

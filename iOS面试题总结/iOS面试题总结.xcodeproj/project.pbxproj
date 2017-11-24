@@ -11,6 +11,8 @@
 		279D06461FC41F6100C1BE0C /* iOSYYmodel的理解.m in Sources */ = {isa = PBXBuildFile; fileRef = 279D06451FC41F6100C1BE0C /* iOSYYmodel的理解.m */; };
 		27CA736F1FC67EC600A7101D /* LiveLife.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CA736E1FC67EC600A7101D /* LiveLife.swift */; };
 		27CA73731FC7B5D000A7101D /* iOS沙盒.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA73721FC7B5D000A7101D /* iOS沙盒.m */; };
+		27CA73771FC7F76A00A7101D /* Core Foundation框架和Cocoa Foundation框架区别.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA73761FC7F76A00A7101D /* Core Foundation框架和Cocoa Foundation框架区别.m */; };
+		27CA737B1FC7FD1900A7101D /* __bridge 相关知识点.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA737A1FC7FD1900A7101D /* __bridge 相关知识点.m */; };
 		27EE0DAB1FBD43150082CC9F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EE0DAA1FBD43150082CC9F /* main.m */; };
 		27EE0DAE1FBD43150082CC9F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EE0DAD1FBD43150082CC9F /* AppDelegate.m */; };
 		27EE0DB11FBD43150082CC9F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27EE0DB01FBD43150082CC9F /* ViewController.m */; };
@@ -31,6 +33,10 @@
 		27CA736E1FC67EC600A7101D /* LiveLife.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveLife.swift; sourceTree = "<group>"; };
 		27CA73711FC7B5D000A7101D /* iOS沙盒.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "iOS沙盒.h"; sourceTree = "<group>"; };
 		27CA73721FC7B5D000A7101D /* iOS沙盒.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "iOS沙盒.m"; sourceTree = "<group>"; };
+		27CA73751FC7F76A00A7101D /* Core Foundation框架和Cocoa Foundation框架区别.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Core Foundation框架和Cocoa Foundation框架区别.h"; sourceTree = "<group>"; };
+		27CA73761FC7F76A00A7101D /* Core Foundation框架和Cocoa Foundation框架区别.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Core Foundation框架和Cocoa Foundation框架区别.m"; sourceTree = "<group>"; };
+		27CA73791FC7FD1900A7101D /* __bridge 相关知识点.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "__bridge 相关知识点.h"; sourceTree = "<group>"; };
+		27CA737A1FC7FD1900A7101D /* __bridge 相关知识点.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "__bridge 相关知识点.m"; sourceTree = "<group>"; };
 		27EE0DA61FBD43150082CC9F /* iOS面试题总结.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS面试题总结.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27EE0DAA1FBD43150082CC9F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		27EE0DAC1FBD43150082CC9F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -86,6 +92,24 @@
 			path = "iOS沙盒";
 			sourceTree = "<group>";
 		};
+		27CA73741FC7F76100A7101D /* Core Foundation框架和Cocoa Foundation框架区别 */ = {
+			isa = PBXGroup;
+			children = (
+				27CA73751FC7F76A00A7101D /* Core Foundation框架和Cocoa Foundation框架区别.h */,
+				27CA73761FC7F76A00A7101D /* Core Foundation框架和Cocoa Foundation框架区别.m */,
+			);
+			path = "Core Foundation框架和Cocoa Foundation框架区别";
+			sourceTree = "<group>";
+		};
+		27CA73781FC7FD1000A7101D /* __bridge 相关知识点 */ = {
+			isa = PBXGroup;
+			children = (
+				27CA73791FC7FD1900A7101D /* __bridge 相关知识点.h */,
+				27CA737A1FC7FD1900A7101D /* __bridge 相关知识点.m */,
+			);
+			path = "__bridge 相关知识点";
+			sourceTree = "<group>";
+		};
 		27EE0D9D1FBD43150082CC9F = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +131,8 @@
 		27EE0DA81FBD43150082CC9F /* iOS面试题总结 */ = {
 			isa = PBXGroup;
 			children = (
+				27CA73781FC7FD1000A7101D /* __bridge 相关知识点 */,
+				27CA73741FC7F76100A7101D /* Core Foundation框架和Cocoa Foundation框架区别 */,
 				27CA73701FC7B5C400A7101D /* iOS沙盒 */,
 				279D06431FC41F4100C1BE0C /* iOSYYmodel的理解 */,
 				274CC9CD1FC2B1BF00AEF033 /* 认识@property */,
@@ -284,6 +310,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27CA73771FC7F76A00A7101D /* Core Foundation框架和Cocoa Foundation框架区别.m in Sources */,
 				27CA73731FC7B5D000A7101D /* iOS沙盒.m in Sources */,
 				27EE0DC31FBD43590082CC9F /* iOS缓存的理解.m in Sources */,
 				27EE0DB11FBD43150082CC9F /* ViewController.m in Sources */,
@@ -292,6 +319,7 @@
 				279D06461FC41F6100C1BE0C /* iOSYYmodel的理解.m in Sources */,
 				27EE0DAE1FBD43150082CC9F /* AppDelegate.m in Sources */,
 				27EE0DAB1FBD43150082CC9F /* main.m in Sources */,
+				27CA737B1FC7FD1900A7101D /* __bridge 相关知识点.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
