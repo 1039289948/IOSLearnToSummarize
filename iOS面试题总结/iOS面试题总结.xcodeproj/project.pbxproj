@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		274CC9D01FC2B1CC00AEF033 /* 认识@property.m in Sources */ = {isa = PBXBuildFile; fileRef = 274CC9CF1FC2B1CC00AEF033 /* 认识@property.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2773E29C1FC81ECA00FD2974 /* model.m in Sources */ = {isa = PBXBuildFile; fileRef = 2773E29B1FC81ECA00FD2974 /* model.m */; };
 		279D06461FC41F6100C1BE0C /* iOSYYmodel的理解.m in Sources */ = {isa = PBXBuildFile; fileRef = 279D06451FC41F6100C1BE0C /* iOSYYmodel的理解.m */; };
 		27CA736F1FC67EC600A7101D /* LiveLife.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CA736E1FC67EC600A7101D /* LiveLife.swift */; };
 		27CA73731FC7B5D000A7101D /* iOS沙盒.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA73721FC7B5D000A7101D /* iOS沙盒.m */; };
@@ -27,6 +28,8 @@
 		24A8E4782756414034B430ED /* libPods-iOS面试题总结.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOS面试题总结.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		274CC9CE1FC2B1CC00AEF033 /* 认识@property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "认识@property.h"; sourceTree = "<group>"; };
 		274CC9CF1FC2B1CC00AEF033 /* 认识@property.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "认识@property.m"; sourceTree = "<group>"; };
+		2773E29A1FC81ECA00FD2974 /* model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = model.h; sourceTree = "<group>"; };
+		2773E29B1FC81ECA00FD2974 /* model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = model.m; sourceTree = "<group>"; };
 		279D06441FC41F6100C1BE0C /* iOSYYmodel的理解.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "iOSYYmodel的理解.h"; sourceTree = "<group>"; };
 		279D06451FC41F6100C1BE0C /* iOSYYmodel的理解.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "iOSYYmodel的理解.m"; sourceTree = "<group>"; };
 		27CA736D1FC67EC600A7101D /* iOS面试题总结-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOS面试题总结-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -79,6 +82,8 @@
 			children = (
 				279D06441FC41F6100C1BE0C /* iOSYYmodel的理解.h */,
 				279D06451FC41F6100C1BE0C /* iOSYYmodel的理解.m */,
+				2773E29A1FC81ECA00FD2974 /* model.h */,
+				2773E29B1FC81ECA00FD2974 /* model.m */,
 			);
 			path = "iOSYYmodel的理解";
 			sourceTree = "<group>";
@@ -311,6 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				27CA73771FC7F76A00A7101D /* Core Foundation框架和Cocoa Foundation框架区别.m in Sources */,
+				2773E29C1FC81ECA00FD2974 /* model.m in Sources */,
 				27CA73731FC7B5D000A7101D /* iOS沙盒.m in Sources */,
 				27EE0DC31FBD43590082CC9F /* iOS缓存的理解.m in Sources */,
 				27EE0DB11FBD43150082CC9F /* ViewController.m in Sources */,
